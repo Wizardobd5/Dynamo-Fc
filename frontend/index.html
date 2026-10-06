@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Football Player Card System — V1 Blueprint</title>
+  <meta name="description" content="Complete football self-assessment platform converting 20 questions into 6 FIFA attributes, algorithmic position matching, and EA FC inspired player cards.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Outfit:wght@300;400;500;600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand" data-target-view="home-view" id="navBrandLogo">
+        <div class="brand-crest">⚡</div>
+        <div class="brand-text">
+          <h1>DYNAMO FC</h1>
+          <span>Player Card System</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-btn active" data-target-view="home-view" id="navBtnHome">Home</button>
+        <button class="nav-btn" data-target-view="squad-view" id="navBtnSquad">Squad Dashboard</button>
+        <button class="nav-btn nav-btn-highlight" data-target-view="assessment-view" id="navBtnCreate">
+          <span>+ Create Player</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Viewport -->
+  <main class="app-viewport">
+
+    <!-- ========================================== -->
+    <!-- 1. HOME VIEW                              -->
+    <!-- ========================================== -->
+    <section class="view-section active-view" id="home-view">
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <div class="hero-pill">⚡ Authentic 20-Question Football Engine</div>
+          <h2 class="hero-title">
+            Discover Your True <br>
+            <span class="accent-gold">Football Position</span> & <br>
+            <span class="accent-green">FIFA Player Card</span>
+          </h2>
+          <p class="hero-description">
+            Complete a targeted 20-question football self-assessment across 6 rating levels. Our algorithmic engine calculates your PAC, SHO, PAS, DRI, DEF, and PHY attributes, identifies your highest-ceiling position among 10 outfield roles, and generates your custom EA FC-style card.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-primary-large" id="heroStartAssessmentBtn">
+              <span>Start Assessment</span>
+              <span>→</span>
+            </button>
+            <button class="btn-secondary-large" id="heroExploreSquadBtn">
+              <span>Explore Squad</span>
+              <span>👥</span>
+            </button>
+          </div>
+
+          <div class="hero-stats-strip">
+            <div class="hero-stat-card">
+              <h3>20</h3>
+              <p>Core Questions</p>
+            </div>
+            <div class="hero-stat-card">
+              <h3>10</h3>
+              <p>Outfield Positions</p>
+            </div>
+            <div class="hero-stat-card">
+              <h3>6</h3>
+              <p>FIFA Face Stats</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-preview-col">
+          <div class="hero-card-glow dynamo-crest-glow"></div>
+          <div class="dynamo-logo-card" id="dynamoLogoContainer" title="Dynamo FC Official Crest">
+            <svg viewBox="0 0 400 500" class="dynamo-crest-svg" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Gradients -->
+                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fff2a3"/>
+                  <stop offset="35%" stop-color="#ffd700"/>
+                  <stop offset="70%" stop-color="#b8860b"/>
+                  <stop offset="100%" stop-color="#ffd700"/>
+                </linearGradient>
+                <linearGradient id="electricBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00f0ff"/>
+                  <stop offset="50%" stop-color="#0066ff"/>
+                  <stop offset="100%" stop-color="#002288"/>
+                </linearGradient>
+                <linearGradient id="shieldBgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#0f172a"/>
+                  <stop offset="40%" stop-color="#09101f"/>
+                  <stop offset="100%" stop-color="#04070d"/>
+                </linearGradient>
+                <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="25%" stop-color="#00f0ff"/>
+                  <stop offset="75%" stop-color="#ffd700"/>
+                  <stop offset="100%" stop-color="#ff9900"/>
+                </linearGradient>
+                <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+              </defs>
+
+              <!-- Outer Shield Silhouette -->
+              <path d="M 200 20 Q 340 30 360 140 C 360 290 280 390 200 460 C 120 390 40 290 40 140 Q 60 30 200 20 Z" 
+                    fill="url(#shieldBgGrad)" stroke="url(#goldGradient)" stroke-width="8" filter="drop-shadow(0 15px 25px rgba(0,0,0,0.8))"/>
+
+              <!-- Inner Trim Shield -->
+              <path d="M 200 35 Q 325 45 342 145 C 342 278 270 372 200 438 C 130 372 58 278 58 145 Q 75 45 200 35 Z" 
+                    fill="#070c17" stroke="url(#electricBlueGrad)" stroke-width="3.5" opacity="0.95"/>
+
+              <!-- Top Championship Stars -->
+              <g fill="url(#goldGradient)" filter="drop-shadow(0 2px 5px rgba(255,215,0,0.5))">
+                <!-- Center Star -->
+                <polygon points="200,50 205,65 220,65 208,74 212,89 200,80 188,89 192,74 180,65 195,65"/>
+                <!-- Left Star -->
+                <polygon points="155,62 159,74 171,74 161,81 165,93 155,86 145,93 149,81 139,74 151,74"/>
+                <!-- Right Star -->
+                <polygon points="245,62 249,74 261,74 251,81 255,93 245,86 235,93 239,81 229,74 241,74"/>
+              </g>
+
+              <!-- Stylized Football Geometry Behind Bolt -->
+              <circle cx="200" cy="225" r="95" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="2"/>
+              <circle cx="200" cy="225" r="75" fill="rgba(0, 102, 255, 0.08)" stroke="rgba(0, 240, 255, 0.2)" stroke-width="2"/>
+              <circle cx="200" cy="225" r="45" fill="none" stroke="rgba(255, 215, 0, 0.15)" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+              <!-- Radiant Energy Rays -->
+              <line x1="200" y1="130" x2="200" y2="150" stroke="#00f0ff" stroke-width="2" opacity="0.5"/>
+              <line x1="200" y1="300" x2="200" y2="320" stroke="#00f0ff" stroke-width="2" opacity="0.5"/>
+              <line x1="105" y1="225" x2="125" y2="225" stroke="#00f0ff" stroke-width="2" opacity="0.5"/>
+              <line x1="275" y1="225" x2="295" y2="225" stroke="#00f0ff" stroke-width="2" opacity="0.5"/>
+
+              <!-- Central Dynamo Lightning Bolt (Power / Energy) -->
+              <path d="M 215 110 L 155 235 L 205 235 L 175 350 L 255 210 L 205 210 Z" 
+                    fill="url(#boltGrad)" filter="url(#neonGlow)"/>
+
+              <!-- Front Banner Ribbon -->
+              <path d="M 65 345 L 335 345 L 315 400 L 200 415 L 85 400 Z" 
+                    fill="url(#shieldBgGrad)" stroke="url(#goldGradient)" stroke-width="3" filter="drop-shadow(0 6px 12px rgba(0,0,0,0.7))"/>
+
+              <!-- Banner Ribbon Text -->
+              <text x="200" y="380" font-family="'Barlow Condensed', sans-serif" font-size="34" font-weight="900" 
+                    fill="#ffffff" text-anchor="middle" letter-spacing="4">
+                DYNAMO FC
+              </text>
+
+              <!-- Established & Subtitle -->
+              <text x="200" y="398" font-family="'Outfit', sans-serif" font-size="11" font-weight="800" 
+                    fill="#00f0ff" text-anchor="middle" letter-spacing="2">
+                EST. 2024 • THE ELECTRIC SQUAD
+              </text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Cards -->
+      <div class="features-header">
+        <h2>Built for Dynamo FC</h2>
+        <p>A complete analytics workflow from individual self-assessment to squad tactical depth.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">🎯</div>
+          <h3>20 Targeted Questions</h3>
+          <p>Measures Ball Mastery, Progressive Passing, Box Finishing, 1v1 Defending, Physicality, Football IQ, and Weak-Foot Ability across a standardized 6-level scale.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">🧠</div>
+          <h3>Algorithmic Position Matrix</h3>
+          <p>Calculates synergy scores (0–100) across CB, LB, RB, CDM, CM, CAM, LW, RW, CF, and ST to reveal your optimal primary role and secondary versatility.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">✨</div>
+          <h3>Custom FIFA Card & Archetype</h3>
+          <p>Generates an interactive 3D EA FC style card with position-specific overall, custom playstyle badge, weak-foot stars, and instant high-res PNG export.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">👥</div>
+          <h3>Squad Tactical Roster</h3>
+          <p>Track the complete Dynamo FC squad roster, filter by tactical lines, and evaluate squad depth across all 10 outfield positions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. ASSESSMENT WIZARD VIEW                 -->
+    <!-- ========================================== -->
+    <section class="view-section" id="assessment-view">
+      <div class="assessment-container">
+        
+        <!-- Wizard Header & Progress Tracker -->
+        <div class="wizard-header">
+          <div class="wizard-top-meta">
+            <div class="wizard-step-badge" id="wizardStepBadge">👤 Step 1: Basic Football Profile</div>
+            <div class="wizard-progress-num" id="wizardProgressNum">Step 1 of 2: Basic Info</div>
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill" id="wizardProgressFill"></div>
+          </div>
+
+          <!-- Section Navigation Chips -->
+          <div class="section-chips-scroller" id="sectionChipsScroller"></div>
+        </div>
+
+        <!-- Step 0: Basic Profile Form -->
+        <div class="wizard-card" id="wizardProfileCard">
+          <h3 class="wizard-card-title">Create Player Profile</h3>
+          <p class="wizard-card-subtitle">Set up basic player identity and current pitch position before the 20-question test.</p>
+
+          <div class="form-group">
+            <label class="form-label" for="inputPlayerName">Player Name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="inputPlayerName" placeholder="e.g. Name" required autocomplete="off">
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="inputJerseyNumber">Jersey Number</label>
+              <input type="number" class="form-input" id="inputJerseyNumber" min="1" max="99" value="10">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inputTeamName">Team / Club Name</label>
+              <input type="text" class="form-input" id="inputTeamName" value="Dynamo FC">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Foot <span class="req">*</span></label>
+            <div class="foot-selector-group">
+              <button type="button" class="foot-btn selected" data-foot="right">Right 🦶</button>
+              <button type="button" class="foot-btn" data-foot="left">Left 🦶</button>
+              <button type="button" class="foot-btn" data-foot="both">Both ⚡</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Where do you currently play? <span class="req">*</span></label>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+              We compare your current position against where the algorithm calculates you fit best.
+            </p>
+            <div class="position-grid">
+              <button type="button" class="pos-btn" data-pos="CB">CB<span class="pos-sub">Centre Back</span></button>
+              <button type="button" class="pos-btn" data-pos="LB">LB<span class="pos-sub">Left Back</span></button>
+              <button type="button" class="pos-btn" data-pos="RB">RB<span class="pos-sub">Right Back</span></button>
+              <button type="button" class="pos-btn" data-pos="CDM">CDM<span class="pos-sub">Def Mid</span></button>
+              <button type="button" class="pos-btn selected" data-pos="CM">CM<span class="pos-sub">Centre Mid</span></button>
+              <button type="button" class="pos-btn" data-pos="CAM">CAM<span class="pos-sub">Att Mid</span></button>
+              <button type="button" class="pos-btn" data-pos="LW">LW<span class="pos-sub">Left Wing</span></button>
+              <button type="button" class="pos-btn" data-pos="RW">RW<span class="pos-sub">Right Wing</span></button>
+              <button type="button" class="pos-btn" data-pos="CF">CF<span class="pos-sub">Centre Fwd</span></button>
+              <button type="button" class="pos-btn" data-pos="ST">ST<span class="pos-sub">Striker</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 1-20: Dynamic Question Card -->
+        <div class="wizard-card" id="wizardQuestionCard" style="display: none;">
+          <!-- Dynamically generated by app.js -->
+        </div>
+
+        <!-- Wizard Navigation Controls -->
+        <div class="wizard-nav-footer">
+          <button type="button" class="btn-nav" id="wizardPrevBtn" disabled>
+            ← Previous
+          </button>
+          <button type="button" class="btn-nav btn-nav-primary" id="wizardNextBtn">
+            Continue to Assessment →
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. CALCULATION REVEAL MODAL               -->
+    <!-- ========================================== -->
+    <div class="reveal-overlay" id="revealOverlay">
+      <div class="reveal-spinner-ring"></div>
+      <h2 class="reveal-stage-text" id="revealStageText">Analyzing Football DNA...</h2>
+      <p class="reveal-subtext" id="revealSubtext">Calculating PAC, SHO, PAS, DRI, DEF, PHY attributes and running 10-position matrix</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 4. RESULT & PLAYER ANALYSIS VIEW          -->
+    <!-- ========================================== -->
+    <section class="view-section" id="result-view">
+      <div class="result-header">
+        <div class="result-header-pill">✨ Assessment Complete • Card Generated</div>
+        <h2>Player Evaluation & Analysis</h2>
+      </div>
+
+      <div class="result-main-grid">
+        
+        <!-- Left Column: FIFA Card & Actions -->
+        <div class="card-presentation-col">
+          <div id="resultCardContainer">
+            <!-- FIFA Card rendered here -->
+          </div>
+
+          <div class="card-action-bar">
+            <button class="btn-card-action btn-card-action-primary" id="btnDownloadCardImage">
+              <span>📥 Download Card (PNG)</span>
+            </button>
+            <button class="btn-card-action" id="btnRetakeAssessment">
+              <span>🔄 Re-take Test</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Deep Analysis -->
+        <div class="analysis-col">
+          
+          <!-- Position Fit Verdict Card -->
+          <div class="analysis-card">
+            <div class="analysis-card-title">
+              <h3>🏆 Position Classification Verdict</h3>
+            </div>
+
+            <div class="verdict-hero-box">
+              <div class="verdict-row">
+                <div class="verdict-main-pos">
+                  <div class="verdict-badge" id="verdictBestPos">CAM</div>
+                  <div class="verdict-names">
+                    <h4 id="verdictPosFullName">Attacking Midfielder</h4>
+                    <span>Recommended Primary Position</span>
+                  </div>
+                </div>
+                <div class="verdict-score-pill" id="verdictScoreText">92/100</div>
+              </div>
+
+              <div class="verdict-secondary-strip">
+                <div id="verdictSecondaryText">Secondary: <strong>CM (87/100)</strong></div>
+                <div id="verdictCurrentText">Current Position: <strong>CM (87/100)</strong></div>
+              </div>
+
+              <div class="alignment-notice" id="verdictAlignmentNotice">
+                Your current position aligns closely with your calculated ceiling.
+              </div>
+            </div>
+
+            <!-- Algorithm Explanations (Why CAM?) -->
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: #fff;">
+              Why did the system recommend this position?
+            </h4>
+            <div class="explanations-list" id="resultExplanationsList">
+              <!-- Explanation items injected here -->
+            </div>
+
+            <!-- Strengths vs Development Areas -->
+            <div class="strengths-dev-grid">
+              <div class="traits-group-box strengths">
+                <h4>🟢 Key Strengths</h4>
+                <div id="resultStrengthsList"></div>
+              </div>
+              <div class="traits-group-box dev-areas">
+                <h4>🟠 Development Areas</h4>
+                <div id="resultDevAreasList"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Attributes & Radar Analysis Card -->
+          <div class="analysis-card">
+            <div class="analysis-card-title">
+              <h3>📊 FIFA Attribute Profile</h3>
+            </div>
+
+            <div class="charts-split-grid">
+              <div class="radar-canvas-wrapper">
+                <canvas id="radarChartCanvas" width="340" height="340"></canvas>
+              </div>
+
+              <div class="attributes-bars-stack" id="resultAttributesStack">
+                <!-- 6 face stats bars -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 10 Outfield Positions Breakdown Card -->
+          <div class="analysis-card">
+            <div class="analysis-card-title">
+              <h3>🗺️ 10 Outfield Positions Fit Matrix</h3>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              Every outfield position evaluates your 20 football questions using specialized tactical weightings.
+            </p>
+            <div class="pos-bars-container" id="resultPositionBarsContainer">
+              <!-- 10 position bars -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. SQUAD / TEAM DASHBOARD VIEW            -->
+    <!-- ========================================== -->
+    <section class="view-section" id="squad-view">
+      <div class="squad-dashboard-header">
+        <h2>Dynamo FC — Team Dashboard</h2>
+        <p>Complete squad roster, position depth, and player cards.</p>
+      </div>
+
+      <!-- Squad Stats Banner -->
+      <div class="squad-stats-banner">
+        <div class="squad-stat-tile">
+          <h3 id="squadTotalPlayers">0</h3>
+          <p>Total Players</p>
+        </div>
+        <div class="squad-stat-tile">
+          <h3 id="squadAvgOverall">--</h3>
+          <p>Squad Avg OVR</p>
+        </div>
+        <div class="squad-stat-tile">
+          <h3 id="squadAvgPace">--</h3>
+          <p>Average Pace</p>
+        </div>
+        <div class="squad-stat-tile">
+          <h3 id="squadAvgPassing">--</h3>
+          <p>Average Passing</p>
+        </div>
+      </div>
+
+      <!-- Squad Toolbar: Search, Filters, Sort -->
+      <div class="squad-toolbar">
+        <div class="search-input-box">
+          <span>🔍</span>
+          <input type="text" id="squadSearchInput" placeholder="Search player name...">
+        </div>
+
+        <div class="filter-pills-row">
+          <button type="button" class="filter-pill-btn active" data-line="ALL">All Roles</button>
+          <button type="button" class="filter-pill-btn" data-line="ATT">Attackers</button>
+          <button type="button" class="filter-pill-btn" data-line="MID">Midfielders</button>
+          <button type="button" class="filter-pill-btn" data-line="DEF">Defenders</button>
+        </div>
+
+        <select class="sort-select" id="squadSortSelect">
+          <option value="overall_desc">Sort: Highest OVR</option>
+          <option value="overall_asc">Sort: Lowest OVR</option>
+          <option value="pace">Sort: Fastest (PAC)</option>
+          <option value="name">Sort: Player Name (A-Z)</option>
+        </select>
+      </div>
+
+      <!-- Squad Player Cards Grid -->
+      <div class="squad-players-grid" id="squadPlayersGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/questions.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/cardRenderer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
