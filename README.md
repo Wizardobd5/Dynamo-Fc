@@ -79,28 +79,43 @@ Calculated Output:
 
 ---
 
-## 🚀 Running the Project
+## 🚀 Running Locally & Deploying to Vercel
 
-### Prerequisites
-- Node.js (v18+) and npm installed.
-
-### Start the Application
+### Run Locally
 ```bash
-# Install dependencies (if not already installed)
+# 1. Install dependencies
 npm install
 
-# Start the server
+# 2. Start dev server
 npm start
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Open your browser to:
-```
-http://localhost:3000
-```
+---
 
-### Run Engine Tests
+### 🌐 Deploy to Vercel (2 Easy Methods)
+
+#### Method 1: Via GitHub (Recommended)
+1. Create a new repository on [GitHub](https://github.com/new) (e.g. `dynamo-fc-cards`).
+2. Push this project to GitHub:
+   ```bash
+   git remote add origin https://github.com/YOUR_USERNAME/dynamo-fc-cards.git
+   git branch -M main
+   git push -u origin main
+   ```
+3. Go to [vercel.com](https://vercel.com) and click **"Add New..."** → **"Project"**.
+4. Import your `dynamo-fc-cards` repository.
+5. Click **"Deploy"** (all settings like `vercel.json` are pre-configured automatically).
+6. Your live URL will be ready in under 1 minute!
+
+#### Method 2: Via Vercel CLI
+Run directly in your project terminal:
 ```bash
-npm run test:engine
+npx vercel
+```
+Follow the quick prompts (accept defaults). Once deployed to preview, run:
+```bash
+npx vercel --prod
 ```
 
 ---
